@@ -9,6 +9,7 @@ const rl=Readline.createInterface({
 });
 
 const matcher= require('./matcher')
+const weather= require('./weather')
 
 //creating prompt
 rl.setPrompt('> ');
@@ -25,12 +26,20 @@ rl.on('line',reply=>{
 
             case 'CurrentWeather':
                 console.log("Let me check....");
-                
-                rl.prompt();
+                //get weather from api
+                weather(data.entities.city,'current')
+                .then(response=>{
+                    console.log(response);
+                    rl.prompt();
+                })
+                .catch(error=>{
+                    console.log("There seems to be a problem");
+                    rl.prompt();
+                });
                 break;
 
             case 'Exit':
-                console.log("Have a great day ahead")
+                console.log("Have a great day ahead");
                 process.exit(0);
                 break;    
             default:{
