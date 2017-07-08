@@ -15,4 +15,5 @@ rl.prompt();
 //creating event listener
 rl.on('line',reply=>{
     console.log(`You said ${reply}`);
-})
+    rl.prompt();
+});
