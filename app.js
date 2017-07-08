@@ -19,7 +19,7 @@ rl.on('line',reply=>{
     matcher(reply,data=>{
         switch(data.intent){
             case 'Hello':
-                console.log("A big hello from vanilla")
+                console.log(`${data.entities.greeting} to you to`)
                 rl.prompt();
                 break;
             case 'Exit':
